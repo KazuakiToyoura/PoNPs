@@ -1,0 +1,12 @@
+#Basic setting
+#calcType,temperature[K],I[A/cm2],n_print,n_figs
+impedance,773.15,0.0,-100,10
+#Setting for Newton-Raphson method
+#iter_max,prec_c,prec_E,n_switch,diff_Volt[V]
+100,1.0e-4,1.0e-4,10,1.0e-10
+#Time grid setting
+#mkTimeGrid,dt_max[s],dt_min[s],n_timeSteps,n_dt_max
+auto,auto,auto,1000,10
+#Setting for impedance only
+#delta_I[A/cm2],mkFreqGrid,freq_max[Hz],freq_min[Hz],n_freqSteps
+0.001,auto,1.0e+9,1.0e-5,140

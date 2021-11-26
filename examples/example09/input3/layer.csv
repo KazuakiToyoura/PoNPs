@@ -1,0 +1,4 @@
+#layerName,relativePermittivity,length[cm],spaceGrid,#elements,ldebye[cm],#elem_ldebye,#ldebye,slowDefectID
+Ni-BZY,200,0.005,auto,101,auto,5,4,2
+BZY,62,0.01,auto,201,auto,5,4,2
+LSCF,50,0.005,auto,101,auto,5,4,2

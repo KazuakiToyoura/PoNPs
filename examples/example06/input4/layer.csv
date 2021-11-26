@@ -1,0 +1,3 @@
+#layerName,relativePermittivity,length[cm],mkSpaceGrid,n_elements,ldebye[cm],n_elem_ldebye,n_ldebye,slowDefectID
+BZY,62,0.01,auto,101,auto,5,4,2
+BLK,62,0.01,auto,101,auto,5,4,2
