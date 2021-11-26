@@ -1,4 +1,4 @@
-# Poisson-Nernst-Planck-Simulator
+# Poisson-Nernst-Planck-Simulator (PoNPs)
 Numerical Simulator for the Poisson-Nernst-Planck systems with multiple ions
 
 # Demo
