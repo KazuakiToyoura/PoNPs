@@ -24,7 +24,7 @@ Just download all files in your preferred directory.
 Just type the following command at the directory with required six input files (+optional files).
 Default names of input files (comp.csv, defect.csv, layer.csv, reaction.csv, conc.csv, efield.csv) can be skipped.
 ```
-python ponps.py --comp comp.csv --defect defect.csv --layer layer.csv --reaction reaction.csv --conc conc.csv --efield efield.csv
+python [PONPS_DIR]/ponps.py --comp comp.csv --defect defect.csv --layer layer.csv --reaction reaction.csv --conc conc.csv --efield efield.csv
 ```
 
 # Input files
