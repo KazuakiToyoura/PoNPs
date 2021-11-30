@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-
+from matplotlib.ticker import ScalarFormatter
 
 # Output profiles of defect concentrations and electric potential.
 def plot(dx_m,c,dx_b,phi,n_elem,n_elem_ldebye,n_ldebye,file_name,defect_name,t):
@@ -32,12 +32,14 @@ def plot(dx_m,c,dx_b,phi,n_elem,n_elem_ldebye,n_ldebye,file_name,defect_name,t):
 	ax1.set_ylabel("Log(c/[mol/cm3])")
 	ax1.set_ylim(logc_LB,logc_UB)
 	ax1.legend(ncol=defect_name.shape[0], bbox_to_anchor=(1,1), loc='lower right', borderaxespad=0,frameon=True,facecolor='white',edgecolor='black',fontsize=8)
-	ax1.text(-0.12,1.05,"t = "+str(t)+" [s]",fontweight='bold',transform=ax1.transAxes,fontsize=10)
+	s = "{:.2e}".format(t)
+	ax1.text(-0.12,1.05,"t = "+s+" [s]",fontweight='bold',transform=ax1.transAxes,fontsize=10)
 	# Plot electric potential profile
 	ax2=fig.add_subplot(2,1,2)
 	ax2.plot(xb,phi,marker='x',markersize=4,linewidth=0.5)
 	ax2.set_xlabel("x [cm]")
 	ax2.set_ylabel("phi [V]")
+	ax2.yaxis.set_major_formatter('{x: 2.1e}')
 	# Fill layer area.
 	for i in range(len(x_layers)):
 		if i%2==0:
@@ -68,12 +70,14 @@ def plot(dx_m,c,dx_b,phi,n_elem,n_elem_ldebye,n_ldebye,file_name,defect_name,t):
 	ax3.set_ylabel("Log(c/[mol/cm3])")
 	ax3.set_ylim(logc_LB,logc_UB)
 	ax3.legend(ncol=defect_name.shape[0], bbox_to_anchor=(1,1), loc='lower right', borderaxespad=0,frameon=True,facecolor='white',edgecolor='black',fontsize=8)
-	ax3.text(-0.12,1.05,"t = "+str(t)+" [s]",fontweight='bold',transform=ax3.transAxes,fontsize=10)
+	s = "{:.2e}".format(t)
+	ax3.text(-0.12,1.05,"t = "+s+" [s]",fontweight='bold',transform=ax3.transAxes,fontsize=10)
 	# Plot electric potential profile
 	ax4=fig.add_subplot(2,1,2)
 	ax4.plot(xb,phi,marker='x',markersize=4,linewidth=0.5)
 	ax4.set_xlabel("element id")
 	ax4.set_ylabel("phi [V]")
+	ax4.yaxis.set_major_formatter('{x: 2.1e}')
 	# Fill layer area.
 	for i in range(len(x_layers)):
 		if i%2==0:
