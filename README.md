@@ -74,12 +74,12 @@ Bode.pdf: Bode diagram (Only for Impedance simulations)
 
 # Author
 
-* Kazuaki Toyoura, PhD.(豊浦 和明)
+* Kazuaki Toyoura (豊浦 和明), PhD.
   Department of Mater. Sci. & Eng., Kyoto Univ.
 
 # Collaborator
 
-* Katsuhiro Ueno, PhD.（植野 雄大）
+* Katsuhiro Ueno (植野 雄大), PhD.
   Department of Mater. Sci. & Eng., Kyoto Univ.
 
 # License
