@@ -23,7 +23,7 @@ Just download all files in your preferred directory.
 # Usage
 Just type the following command at the directory with required six input files (+optional files).
 Default names of input files (comp.csv, defect.csv, layer.csv, reaction.csv, conc.csv, efield.csv) can be skipped.
-The format of each input file is described in the pdf manual and ![wiki](https://github.com/KazuakiToyoura/PoNPs/wiki).
+The format of each input file is described in the pdf manual and ![PoNPs wiki](https://github.com/KazuakiToyoura/PoNPs/wiki).
 ```
 python [PONPS_DIR]/ponps.py --comp comp.csv --defect defect.csv --layer layer.csv --reaction reaction.csv --conc conc.csv --efield efield.csv
 ```
