@@ -19,7 +19,7 @@ if __name__ == "__main__":
 	print("#"*30)
 	date = datetime.datetime.now()
 	print(date)
-	print("Start progmram!")
+	print("Start program!")
 	print("#"*30, "\n")
 	########################################
 
@@ -289,7 +289,7 @@ if __name__ == "__main__":
 	date = datetime.datetime.now()
 	print(date)
 	if status == 0:
-		print("Finish pogram!")
+		print("Finish program!")
 	elif status == 1:
 		print("Abort program!")
 	print("#"*30)
