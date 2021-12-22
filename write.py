@@ -3,7 +3,7 @@ np.set_printoptions(threshold=np.inf)
 import converter as cvt
 
 
-def output(data_c_,data_E_,data_phi_,data_fMat_,dx_m_,dx_b_,dt_,T_K,z,D0,l0,c0,n_print):
+def output(data_c_,data_E_,data_phi_,data_fMat_,dx_m_,dx_b_,dt_,T_K,z,D0,l0,c0,n_print,hetero_ids):
 	print("-"*30)
 	# Convert into quantities with original dimension.
 	data_c = cvt.dl2d_c(np.array(data_c_),c0)
@@ -12,7 +12,12 @@ def output(data_c_,data_E_,data_phi_,data_fMat_,dx_m_,dx_b_,dt_,T_K,z,D0,l0,c0,n
 	x_m = np.append(0.0,np.cumsum(cvt.dl2d_l(dx_m_,l0)))
 	x_m_2d = x_m.reshape(1,x_m.shape[0])
 	x_b = np.append(0.0,np.cumsum(cvt.dl2d_l(dx_b_[1:-1],l0)))
+	x_b_hetero = np.array([0.0,0.0])
+	for i in range(1,hetero_ids.shape[0]):
+		x_b_hetero = np.append(x_b_hetero,x_b[hetero_ids[i-1]+1:hetero_ids[i]+1])
+		x_b_hetero = np.append(x_b_hetero,x_b[hetero_ids[i]])
 	x_b_2d = x_b.reshape(1,x_b.shape[0])
+	x_b_hetero_2d = x_b_hetero.reshape(1,x_b_hetero.shape[0])
 	t = np.append(0.0,np.cumsum(cvt.dl2d_t(dt_,D0,l0)))
 	t_2d = t.reshape(t.shape[0],1)
 	voltage_2d = data_phi[:,-1].reshape(data_phi.shape[0],1)
@@ -87,7 +92,7 @@ def output(data_c_,data_E_,data_phi_,data_fMat_,dx_m_,dx_b_,dt_,T_K,z,D0,l0,c0,n
 	# Save the partial current profile in partI*_profile.csv for each defect.
 	print("Output partialI_profile.csv")
 	for i in range(n_def):
-		xb_Iij_tmp = np.concatenate([x_b_2d,data_IMat[printID,i,:]])
+		xb_Iij_tmp = np.concatenate([x_b_hetero_2d,data_IMat[printID,i,:]])
 		Iij_profile_tmp = np.concatenate([t_2d_v,xb_Iij_tmp],axis=1)
 		np.savetxt('partialI'+str(i+1)+'_profile.csv',Iij_profile_tmp,fmt='%.10e',delimiter=',',header='partialI(time[s],x[cm]) [A/cm2]')
 	

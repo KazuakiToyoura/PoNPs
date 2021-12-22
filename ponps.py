@@ -81,6 +81,8 @@ if __name__ == "__main__":
 	= read.read_layer(layer_file)
 	# Convert relative permittivity to absolute permittivity [F/cm]
 	epsilon = epsr * 8.854187812813e-14 # 8.854187812813e-12 * 1e-2
+	# IDs of hetero-boudnaries
+	hetero_ids = np.append(0,np.cumsum(n_elem))
 	
 	print("Read reaction.csv")
 	reaction_file = args.reaction
@@ -202,7 +204,7 @@ if __name__ == "__main__":
 	data_c_ = [ci_]
 	data_E_ = [Ei_]
 	data_phi_ = [cvt.E_2phi_(Ei_,dx_b_)]
-	data_fMat_ = [np.zeros((n_def,np.sum(n_elem)+1))]
+	data_fMat_ = [np.zeros((n_def,hetero_ids[-1]+hetero_ids.shape[0]+1))]
 
 	# Setting a constant current.
 	Iconst_ = I_
@@ -228,8 +230,13 @@ if __name__ == "__main__":
 		data_c_.append(c_)
 		data_E_.append(E_)
 		data_phi_.append(phi_)
-		#If fL_ != fR_, the value with greater magnitude is selected as f_.
-		fMat_ = np.where(np.abs(fLMat_)>=np.abs(fRMat_),fLMat_,fRMat_)
+		##If fL_ != fR_, the value with greater magnitude is selected as f_.
+		#fMat_ = np.where(np.abs(fLMat_)>=np.abs(fRMat_),fLMat_,fRMat_)
+		#[Modify] For hetero-boudnaries, both fL and fR are output.
+		fMat_ = np.concatenate([fLMat_[:,0].reshape([n_def,1]),fRMat_[:,0].reshape([n_def,1])],axis=1)
+		for i in range(1,hetero_ids.shape[0]):
+			fMat_ = np.concatenate([fMat_,fLMat_[:,hetero_ids[i-1]+1:hetero_ids[i]+1]],axis=1)
+			fMat_ = np.concatenate([fMat_,fRMat_[:,hetero_ids[i]].reshape([n_def,1])],axis=1)
 		data_fMat_.append(fMat_)
 		
 		# Print total differences in c, E, and Voltage
@@ -266,7 +273,7 @@ if __name__ == "__main__":
 	
 	# Output several files
 	print("Output files")
-	write.output(data_c_,data_E_,data_phi_,data_fMat_,dx_m_,dx_b_,dt_,T_K,z,D0,l0,c0,n_print)
+	write.output(data_c_,data_E_,data_phi_,data_fMat_,dx_m_,dx_b_,dt_,T_K,z,D0,l0,c0,n_print,hetero_ids)
 	
 	
 	# Calculate impedance spectra (calcType = 'impedance' only).
