@@ -45,6 +45,7 @@ def output(data_c_,data_E_,data_phi_,data_fMat_,dx_m_,dx_b_,dt_,T_K,z,D0,l0,c0,n
 	n_tstep = data_phi.shape[0]
 	printID = []
 	if n_print == 0:
+		date = datetime.datetime.now()
 		n_print = n_tstep-1
 	if n_print > 0:
 		for i in range(n_tstep):
