@@ -99,7 +99,7 @@ def read_layer(layer_file):
 	slowDefectID = layer_info[:,8].astype(int) # slow defect ID at each layer
 	for i in range(n_elem.shape[0]): # Check and modify the number of emelents in each layer.
 		if n_elem[i]%2 == 0:
-			n_elem[i] = nelem[i]+1
+			n_elem[i] = n_elem[i]+1
 			print("Warning: n_elem is changed into odd number!")
 	# Make list of layer ID for each element (lid)
 	lid = []

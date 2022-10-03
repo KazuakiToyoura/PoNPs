@@ -143,7 +143,7 @@ def mkGrid_time(timeGrid,n_dt_max,dt_max,dt_min,n_time,slowDefectID,d_,D_,K_,z,c
 	else:
 		# Read a specified file
 		dt = np.loadtxt(fname=timeGrid,dtype="float",delimiter=",",comments="#")
-		dt_ = d2dl_t(dt)
+		dt_ = cvt.d2dl_t(dt)
 		if dt_.shape[0] != n_time:
 			print("Warning!")
 			print("The number of time intervals in timeGrid.csv is not equal to the number of time grids in comp.csv.")
